@@ -1,0 +1,21 @@
+<h2>List of Passengers</h2>
+<button><%= link_to "Create a new passenger", new_passenger_path %></button>
+
+<% if @passengers.length > 0 %>
+<table class="passengers-table">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Phone Number</th>
+    </tr>
+  <% @passengers.each do |p| %>
+  <tr>
+    <td><%= p.id %></td>
+    <td><%= link_to p.name, passenger_path(p.id) %></td>
+    <td><%= p.phone_num %></td>
+  </tr>
+  <% end %>
+</table>
+<% else %>
+  <h3>No passengers on record</h3>
+<% end %>
