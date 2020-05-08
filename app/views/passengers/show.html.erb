@@ -22,10 +22,10 @@
   </tr>
   <% @passenger.trips.each do |trip| %>
   <tr>
-    <td><%= trip.id %></td>
+    <td><%= link_to trip.id, trip_path(trip.id) %></td>
     <td><%= trip.date %></td>
-    <td><%= trip.passenger.name %></td>
-    <td><%= trip.driver.name %></td>
+    <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
+    <td><%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
     <td><%= trip.rating %></td>
     <td>$<%= trip.cost %></td>
   </tr>
