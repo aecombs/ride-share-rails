@@ -20,6 +20,8 @@ class DriversController < ApplicationController
   def create
     driver = Driver.new(driver_params)
 
+    driver[:available] = true 
+
     if driver.save
       redirect_to drivers_path
       return
@@ -46,6 +48,7 @@ class DriversController < ApplicationController
   def update
     driver_id = params[:id].to_i
     @driver = Driver.find_by(id: driver_id)
+
 
     if @driver.nil?
       head :not_found
@@ -98,6 +101,6 @@ class DriversController < ApplicationController
   private
 
   def driver_params
-    return params.require(:driver).permit(:name, :vin, :available)
+    return params.require(:driver).permit(:name, :vin)
   end
 end
