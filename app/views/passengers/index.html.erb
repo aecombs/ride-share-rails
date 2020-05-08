@@ -11,7 +11,7 @@
   <% @passengers.each do |p| %>
   <tr>
     <td><%= p.id %></td>
-    <td><%= p.name %></td>
+    <td><%= link_to p.name, passenger_path(p.id) %></td>
     <td><%= p.phone_num %></td>
   </tr>
   <% end %>

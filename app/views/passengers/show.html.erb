@@ -4,11 +4,12 @@
 
 <button><%= link_to "Edit Passenger", edit_passenger_path(@passenger.id) %></button>
 <button><%= link_to "Delete Passenger", passenger_path(@passenger.id), method: :delete %></button>
+<%#%>
 <button><%= link_to "Create a New Trip", new_trip_path %></button>
 
 <h3><%= @passenger.name%>'s Trips</h3>
 <% if @passenger.trips %>
-  <table class="trips-table">
+  <table class="table">
   <tr>
     <th>Trip ID</th>
     <th>Trip Date</th>
@@ -24,7 +25,7 @@
     <td><%= trip.passenger.name %></td>
     <td><%= trip.driver.name %></td>
     <td><%= trip.rating %></td>
-    <td><%= trip.cost %></td>
+    <td>$<%= trip.cost %></td>
   </tr>
   <% end %>
   </table>

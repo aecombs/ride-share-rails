@@ -1,0 +1,13 @@
+<div class="form">
+  <%= form_with model: @passenger, method: :patch do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name%>
+  </div>
+  <div>
+    <%= f.label :phone_num %>
+    <%= f.text_field :phone_num %>
+  </div>
+    <%= f.submit action_name, class: "button" %>
+  <% end %>
+</div>
