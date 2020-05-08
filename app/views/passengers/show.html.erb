@@ -1,6 +1,8 @@
 <h2><strong>Passenger name: </strong><%= @passenger.name %></h2>
 <h5><strong>Phone Number: </strong><%= @passenger.phone_num %></h5>
-<h5><strong>Total Charged: </strong>$<%= @passenger.total_charged %> </h5>
+<% if @passenger.total_charged > 0 %>
+  <h5><strong>Total Charged: </strong>$<%= @passenger.total_charged %> </h5>
+<% end %>
 
 <button><%= link_to "Edit Passenger", edit_passenger_path(@passenger.id) %></button>
 <button><%= link_to "Delete Passenger", passenger_path(@passenger.id), method: :delete %></button>
@@ -8,7 +10,7 @@
 <button><%= link_to "Create a New Trip", new_trip_path %></button>
 
 <h3><%= @passenger.name%>'s Trips</h3>
-<% if @passenger.trips %>
+<% if @passenger.trips.length > 0 %>
   <table class="table">
   <tr>
     <th>Trip ID</th>
