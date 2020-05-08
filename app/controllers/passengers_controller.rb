@@ -1,6 +1,6 @@
 class PassengersController < ApplicationController
     def index
-        @passengers = Passenger.all
+      @passengers = Passenger.all
     end
 
     def new
@@ -11,6 +11,11 @@ class PassengersController < ApplicationController
     end
 
     def show
+      @passenger = Passenger.find_by(id: params[:id].to_i)
+      if @passenger.nil?
+        head :not_found
+        return
+      end
     end
 
     def edit
