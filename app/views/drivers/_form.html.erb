@@ -1,0 +1,17 @@
+<%= form_with model: model, class: 'driver_form' do |f| %>
+    <div>
+        <%= f.label :name%>
+        <%= f.text_field :name%>
+    </div>
+
+    <div>
+        <%= f.label :vin %>
+        <%= f.text_field :vin %>
+    </div>
+
+    <div>
+        <%= f.label :available %>
+        <%= f.text_area :available %>
+    </div>
+    <%= f.submit "Submit" %>
+<% end %>
