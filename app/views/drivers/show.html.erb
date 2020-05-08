@@ -5,6 +5,8 @@
 <%else%>
   <h3>Status: Unavailable</h3>
 <%end%>
+<h3>Total Earning: <%= @driver.total_earning%></h3>
+<h3>Average Rating: <%= @driver.average_rating%></h3>
 
 <button type="button"><%= link_to "Edit This Driver", edit_driver_path(@driver.id)%></button>
 <button type="button"> <%= link_to "Delete This Driver", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure you want to delete this driver?" } %></button>
@@ -12,3 +14,28 @@
 <% #TODO: Ask Alicia if she knows how to use ternary to change %>
 
 <% #TODO! list of trips goes here %>
+<h3>Driver's Trips</h3>
+<% if @driver.trips.length > 0 %>
+  <table>  
+    <tr>
+      <th>Trip's ID</th>
+      <th>Trips's Date</th>
+      <th>Passenger's Name</th>
+      <th>Driver's Name</th>
+      <th>Rating</th>
+      <th>Cost</th>
+    </tr>
+  <% @driver.trips.each do |trip| %>
+    <tr>
+      <th><%= trip.id %></th>
+      <th><%= trip.date %></th>
+      <th><%= trip.passenger.name %></th>
+      <th><%= trip.driver.name %></th>
+      <th><%= trip.rating %></th>
+      <th><%= trip.cost %></th>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+    <h3> There are no trips on record for this driver. </h3>
+<% end %>
