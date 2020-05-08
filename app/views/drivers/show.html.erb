@@ -8,5 +8,7 @@
 
 <button type="button"><%= link_to "Edit This Driver", edit_driver_path(@driver.id)%></button>
 <button type="button"> <%= link_to "Delete This Driver", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure you want to delete this driver?" } %></button>
+<button type="button"><%= link_to "Change Driver's Availibity", change_availability_path(@driver.id), method: :patch %></button>
+<% #TODO: Ask Alicia if she knows how to use ternary to change %>
 
 <% #TODO! list of trips goes here %>

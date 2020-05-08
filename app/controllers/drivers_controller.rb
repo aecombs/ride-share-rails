@@ -29,7 +29,6 @@ class DriversController < ApplicationController
     end
   end
 
-
   def edit
     driver_id = params[:id].to_i
     @driver = Driver.find_by(id: driver_id)
@@ -72,7 +71,32 @@ class DriversController < ApplicationController
     end
   end
 
-  private 
+  def change_availability
+    driver_id = params[:id].to_i
+    @driver = Driver.find_by(id: driver_id)
+
+    if @driver.nil?
+      head :not_found
+      return
+    end
+
+    if @driver[:available]
+      @driver[:available] = false
+    else
+      @driver[:available] = true
+    end
+
+    if @driver.save
+      redirect_to driver_path(@driver.id)
+      return
+    else
+      render :new, :bad_request
+      return
+    end
+  end
+
+  private
+
   def driver_params
     return params.require(:driver).permit(:name, :vin, :available)
   end
