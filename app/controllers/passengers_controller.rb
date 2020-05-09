@@ -21,7 +21,7 @@ class PassengersController < ApplicationController
       redirect_to passenger_path(@passenger.id)
       return
     else
-      render :new, :bad_request
+      render :new
       return
     end
   end
