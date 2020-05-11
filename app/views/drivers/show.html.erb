@@ -26,14 +26,14 @@
       <th>Cost</th>
     </tr>
   <% @driver.trips.each do |trip| %>
-    <tr>
-      <th><%= trip.id %></th>
-      <th><%= trip.date %></th>
-      <th><%= trip.passenger.name %></th>
-      <th><%= trip.driver.name %></th>
-      <th><%= trip.rating %></th>
-      <th><%= trip.cost %></th>
-    </tr>
+  <tr>
+    <td><%= link_to trip.id, trip_path(trip.id) %></td>
+    <td><%= trip.date %></td>
+    <td><%= link_to trip.passenger.name, passenger_path(trip.passenger.id) %></td>
+    <td><%= link_to trip.driver.name, driver_path(trip.driver.id) %></td>
+    <td><%= trip.rating %></td>
+    <td>$<%= trip.cost %></td>
+  </tr>
   <% end %>
   </table>
 <% else %>
