@@ -8,4 +8,5 @@
 <p>Driver's Name: <%= @trip.driver.name%></p>
 
 <button type="button"><%= link_to "Edit Trip", edit_trip_path(@trip.id) %></button>
-<button type="button"><%= link_to "Delete Trip", edit_trip_path(@trip.id), data: { confirm: "Are you sure you want to delete trip number #{@trip.id}? You can't undo this action." }, method: :delete %></button>
+
+<button type="button"><%= link_to "Delete Trip", trip_path(@trip.id), method: :delete, data: { confirm: "Are you sure you want to delete trip number #{@trip.id}? You can't undo this action." } %></button>

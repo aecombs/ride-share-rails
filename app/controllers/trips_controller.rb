@@ -19,6 +19,12 @@ class TripsController < ApplicationController
     end
   end
 
+  def new
+  end
+
+  def create
+  end
+
   def edit
     @trip = Trip.find_by(id: params[:id])
 
@@ -44,7 +50,17 @@ class TripsController < ApplicationController
   end
 
   def destroy
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      head :not_found
+      return
+    end
+
+    @trip.destroy
+    redirect_to trips_path
+    return
   end
+
   private
 
   def trip_params
