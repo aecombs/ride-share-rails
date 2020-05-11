@@ -29,13 +29,12 @@ class TripsController < ApplicationController
   end
 
   def update
-    @trip = Trips.find_by(id: params[:id].to_i)
+    @trip = Trip.find_by(id: params[:id].to_i)
 
     if @trip.nil?
         head :not_found
         return
-    elsif
-        @trip.update(trip_params)
+    elsif @trip.update(trip_params)
         redirect_to trip_path(@trip.id)
         return
     else
