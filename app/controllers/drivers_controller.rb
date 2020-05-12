@@ -4,7 +4,7 @@ class DriversController < ApplicationController
   end
 
   def show
-    driver_id = params[:id].to_i
+    driver_id = params[:id]
     @driver = Driver.find_by(id: driver_id)
 
     if @driver.nil?

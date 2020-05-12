@@ -16,8 +16,16 @@ class Driver < ApplicationRecord
     def average_rating
         total_rating = 0 
         self.trips.each do |trip|
-            total_rating += trip.rating
+            if trip.rating
+                total_rating += trip.rating
+            end
         end
         return total_rating / self.trips.length
+    end
+    
+    def self.select_driver
+        driver = self.all.find {|driver| driver[:available]}
+        # driver[:available] = false
+        return driver.id
     end
 end
