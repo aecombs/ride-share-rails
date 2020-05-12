@@ -100,7 +100,7 @@ describe PassengersController do
     it "will remove a passenger and its trips" do
       new_passenger = Passenger.create(name: "Sally BoBally", phone_num: "867-5309")
       new_driver = Driver.create(name: "Hollie Day", vin: "123ABC456DEF789GH", available: true)
-      new_trip = Trip.create(date: Date.today.to_s, cost: Trip.generate_cost, passenger_id: new_passenger.id, driver_id: new_driver.id)
+      new_trip = Trip.create(date: Date.today, cost: Trip.generate_cost, passenger_id: new_passenger.id, driver_id: new_driver.id)
 
       expect{
         delete passenger_path(new_passenger.id)
