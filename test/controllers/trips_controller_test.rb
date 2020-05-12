@@ -27,7 +27,7 @@ describe TripsController do
     end
   end
 
-  describe "nested create" do
+  describe "create" do
     it "will create a new trip without taking parameters" do
       expect{
         post passenger_trips_path(@passenger.id), params: nil
@@ -35,13 +35,17 @@ describe TripsController do
 
       new_trip = Trip.find_by(id: @passenger.trips.last.id)
 
+      expect(new_trip.driver.available).must_equal false
+
       must_respond_with :redirect
       must_redirect_to passenger_path(@passenger.id)
     end
   end
 
   describe "edit" do
+    it "will update the trip" do
 
+    end
   end
 
   describe "update" do

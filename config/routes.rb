@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :drivers
   resources :passengers
-  resources :trips
+  resources :trips, except: [:create]
 
   patch "drivers/:id/available", to: "drivers#change_availability", as: "change_availability"
 end
