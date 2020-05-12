@@ -13,9 +13,9 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find_by(id: params[:id])
+    
     if @trip.nil?
-      head :not_found
-      redirect_to :index
+      redirect_to trips_path
       return
     end
   end

@@ -33,33 +33,33 @@ describe PassengersController do
 
   describe "create" do
     it "can create a new passenger" do
-      passenger_hash = {
+      passenger_params = {
         passenger: {
           name: "Anna Banana",
           phone_num: "123-456-7890"
         },
       }
       
-      expect {
-        post passengers_path, params: passenger_hash
+      expect{
+        post passengers_path, params: passenger_params
       }.must_change "Passenger.count", 1
       
-      new_passenger = Passenger.find_by(name: passenger_hash[:passenger][:name])
-      expect(new_passenger.phone_num).must_equal passenger_hash[:passenger][:phone_num]
+      new_passenger = Passenger.find_by(name: passenger_params[:passenger][:name])
+      expect(new_passenger.phone_num).must_equal passenger_params[:passenger][:phone_num]
       
       must_respond_with :redirect
       must_redirect_to passenger_path(new_passenger.id)
     end
 
     it "will redirect when invalid params are given" do
-      passenger_hash = {
+      passenger_params = {
         passenger: {
           name: "Anna Banana"
         },
       }
 
       expect {
-        post passengers_path, params: passenger_hash
+        post passengers_path, params: passenger_params
       }.must_differ "Passenger.count", 0
     end
   end
