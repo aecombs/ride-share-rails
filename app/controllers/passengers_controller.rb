@@ -53,10 +53,14 @@ class PassengersController < ApplicationController
     if @passenger.nil?
       head :not_found
       return
+    else
+      @passenger.trips.each do |trip|
+        trip.destroy
+      end
+      @passenger.destroy
+      redirect_to passengers_path
+      return
     end
-
-    @passenger.destroy
-    redirect_to passengers_path
   end
 
   private

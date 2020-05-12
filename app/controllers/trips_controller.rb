@@ -15,6 +15,24 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
       head :not_found
+      redirect_to :index
+      return
+    end
+  end
+
+
+  def create
+    # driver = (Driver.find_by(available: true)).id
+    @passenger = Passenger.find_by(id: params[:passenger_id])
+    # driver = Driver.all.find{ |d| d[:availabe] }
+    @trip = Trip.new(date: Date.today.to_s, cost: Trip.generate_cost, passenger_id: @passenger.id, driver_id: Driver.select_driver)
+
+    if @trip.save
+      @trip.driver.update(available: false)
+      redirect_to passenger_path(@passenger.id)
+      return
+    else
+      render :bad_request
       return
     end
   end
@@ -44,7 +62,17 @@ class TripsController < ApplicationController
   end
 
   def destroy
+    @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      head :not_found
+      return
+    end
+
+    @trip.destroy
+    redirect_to trips_path
+    return
   end
+
   private
 
   def trip_params

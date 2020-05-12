@@ -4,7 +4,7 @@ class DriversController < ApplicationController
   end
 
   def show
-    driver_id = params[:id].to_i
+    driver_id = params[:id]
     @driver = Driver.find_by(id: driver_id)
 
     if @driver.nil?
@@ -68,6 +68,9 @@ class DriversController < ApplicationController
       head :not_found
       return
     else
+      @driver.trips.each do |trip|
+        trip.destroy
+      end
       @driver.destroy
       redirect_to drivers_path
       return
