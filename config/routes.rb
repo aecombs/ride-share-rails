@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   resources :passengers
   resources :trips
 
-  patch 'drivers/:id/available', to: 'drivers#change_availability', as: "change_availability"
+  patch "drivers/:id/available", to: "drivers#change_availability", as: "change_availability"
 end
