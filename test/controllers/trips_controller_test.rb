@@ -4,7 +4,7 @@ describe TripsController do
   before do
     @passenger = Passenger.create(name: "Alla Baster", phone_num: "867-5309")
     @driver = Driver.create(name: "Hollie Day", vin: "123ABC456DEF789GH", available: true)
-    @trip = Trip.create(date: Date.today.to_s, cost: Trip.generate_cost, passenger_id: @passenger.id, driver_id: @driver.id)
+    @trip = Trip.create(date: Date.today, cost: Trip.generate_cost, passenger_id: @passenger.id, driver_id: @driver.id)
   end
 
   describe "index" do
@@ -43,16 +43,55 @@ describe TripsController do
   end
 
   describe "edit" do
-    it "will update the trip" do
+    it "can render edit view for a valid trip" do
+      get edit_trip_path(@trip.id)
+      must_respond_with :success
+    end
 
+    it "will return not_found for invalid trip" do
+      get edit_trip_path(-5)
+      must_respond_with :not_found
     end
   end
 
   describe "update" do
+    it "will update a valid trip" do
+      trip_params = {
+        trip: {
+          cost: 22,
+          date: Date.today,
+          rating: 5
+        }
+      }
 
+      expect{
+        patch trip_path(@trip.id), params: trip_params
+      }.must_differ "Trip.count", 0
+
+      expect(@passenger.trips.last.cost).must_equal trip_params[:trip][:cost]
+      expect(@passenger.trips.last.date).must_equal trip_params[:trip][:date]
+      expect(@passenger.trips.last.rating).must_equal trip_params[:trip][:rating]
+    end
+
+    it "will return not_found for invalid trip id" do
+      patch trip_path(-5)
+      must_respond_with :not_found
+    end
   end
 
   describe "destroy" do
+    it "can remove a trip" do
+      new_trip = Trip.create(date: Date.today, cost: Trip.generate_cost, passenger_id: @passenger.id, driver_id: @driver.id)
 
+      expect{
+        delete trip_path(new_trip.id)
+      }.must_differ "Trip.count", -1
+      must_redirect_to trips_path
+    end
+
+    it "will return not_found if given invalid trip id" do
+      delete trip_path(-5)
+      must_respond_with :not_found
+    end
   end
 end
