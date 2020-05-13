@@ -1,7 +1,7 @@
 <h2>Passenger name: <%= @passenger.name %></h2>
-<h5><strong>Phone Number: </strong><%= @passenger.phone_num %></h5>
+<h5>Phone Number: <%= @passenger.phone_num %></h5>
 <% if @passenger.total_charged > 0 %>
-  <h5><strong>Total Charged: </strong>$<%= @passenger.total_charged %> </h5>
+  <h5>Total Charged: $<%= @passenger.total_charged %> </h5>
 <% end %>
 
 <button><%= link_to "Edit Passenger", edit_passenger_path(@passenger.id) %></button>
@@ -34,5 +34,3 @@
 <% else %>
   <p>There are no trips on record for this passenger.</p>
 <% end %>
-
-<% #TODO: CAN we dry this up so we only use one form for both passenger and driver %>

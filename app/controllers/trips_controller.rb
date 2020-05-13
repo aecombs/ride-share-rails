@@ -7,7 +7,7 @@ class TripsController < ApplicationController
       driver = Driver.find_by(id: params[:driver_id])
       @trips = driver.trips
     else
-      @trips = Trip.all
+      @trips = Trip.order("id ASC").all
     end
   end
 

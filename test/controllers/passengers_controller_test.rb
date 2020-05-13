@@ -82,6 +82,16 @@ describe PassengersController do
  
       expect(Passenger.last.name).wont_equal name
     end
+
+    it "won't update an existing passenger if it doesn't pass validations" do
+      name = @passenger.name
+      passenger_params = {
+        passenger: {
+          name: "Hermione Granger",
+          phone_num: @passenger.phone_num
+        }
+      }
+    end
   end
 
   describe "edit" do

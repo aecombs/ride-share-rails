@@ -16,3 +16,42 @@
 @import "bootstrap";
 
 @import "**/*";
+
+body {
+  background-color: rgb(242, 242, 242);
+}
+
+
+ul {
+  background-color: lavendar;
+  list-style-type: none;
+  margin: 0;
+  padding: 5px;
+  overflow: hidden;
+  background-color: black;
+  color: rgb(242, 242, 242);
+
+}
+
+li {
+  float: left;
+}
+
+ul div {
+  margin-left: 72vw;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: right;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: rgba(136, 136, 136, 0.228);
+  text-decoration: none;
+  color: white;
+}
+

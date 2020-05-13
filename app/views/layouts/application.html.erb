@@ -7,9 +7,23 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
+  <header>
+    <nav>
+        <ul>
+          <li><h2>Rideshare Rails</h2></li>
+          <div>
+          <li><%= link_to "Drivers", drivers_path %></li>
+          <li><%= link_to "Passengers", passengers_path %></li>
+          <li><%= link_to "Trips", trips_path %></li>
+          </div>
+        </ul>
+      </nav>
+  </header>
+    
     <%= yield %>
   </body>
 </html>

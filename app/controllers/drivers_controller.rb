@@ -1,6 +1,6 @@
 class DriversController < ApplicationController
   def index
-    @drivers = Driver.all
+    @drivers = Driver.order("id ASC").all
   end
 
   def show
@@ -26,7 +26,7 @@ class DriversController < ApplicationController
       redirect_to drivers_path
       return
     else
-      redirect_to new_driver_path
+      render :new
       return
     end
   end
@@ -56,7 +56,8 @@ class DriversController < ApplicationController
       redirect_to driver_path(@driver.id)
       return
     else
-      redirect_to edit_driver_path(@driver.id)
+      # redirect_to edit_driver_path(@driver.id)
+      render :edit
       return
     end
   end
